@@ -1,6 +1,6 @@
-name: PiViPi-Core
+name: ${project.name}
 main: pl.pivipi.core.Core
-version: 1.0.0
+version: ${project.version}
 api-version: 1.16
 author: Minecon724
 website: https://pivipi.pl
