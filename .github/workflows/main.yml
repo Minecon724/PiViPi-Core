@@ -41,8 +41,8 @@ jobs:
           path: target/*.jar
       - name: Set outputs
         id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)
-      - uses: "marvinpinto/action-automatic-releases@latest"
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - uses: "actions/create-release@v1"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
         with:
