@@ -35,3 +35,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
         run: mvn clean package
+      - run: mkdir upload && cp target/*.jar upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: upload
