@@ -39,9 +39,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: target/*.jar
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          automatic_release_tag: "ajajs"
+          automatic_release_tag: "${{ steps.vars.outputs.sha_short }}"
           files: target/*.jar
