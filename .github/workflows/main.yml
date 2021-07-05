@@ -43,9 +43,10 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)
       - uses: "marvinpinto/action-automatic-releases@latest"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          automatic_release_tag: "${GITHUB_SHA::8}"
+          tag_name: "${GITHUB_SHA::8}"
           files: |
             target/*.jar
