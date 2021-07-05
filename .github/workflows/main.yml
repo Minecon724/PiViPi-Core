@@ -43,7 +43,7 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short "$GITHUB_SHA")"
       - name: sjsj
-        uses: tvdias/github-tagger@v0.0.2
+        uses: tvdias/github-tagger@v0.0.1
         with:
+          tag: "${GITHUB_SHA::8}"
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          tag: "${{ steps.vars.sha_short }}"
