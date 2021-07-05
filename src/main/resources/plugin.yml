@@ -1,0 +1,13 @@
+name: PiViPi-Core
+main: pl.pivipi.core.Core
+version: 1.0.0
+api-version: 1.16
+author: Minecon724
+website: https://pivipi.pl
+commands:
+  zakup:
+  stat:
+  ip:
+permissions:
+  core.ip:
+    default: op
