@@ -39,11 +39,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: target/*.jar
-      - name: Set outputs
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short "$GITHUB_SHA")"
-      - name: sjsj
-        uses: tvdias/github-tagger@v0.0.1
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          tag: "${GITHUB_SHA::8}"
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: target/*.jar
