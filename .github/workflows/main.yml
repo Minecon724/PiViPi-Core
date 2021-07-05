@@ -45,5 +45,5 @@ jobs:
       - name: sjsj
         uses: tvdias/github-tagger@v0.0.2
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
           tag: "${{ steps.vars.sha_short }}"
