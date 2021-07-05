@@ -42,13 +42,10 @@ jobs:
       - name: Set outputs
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)
-      - name: Extract Maven project version
-        run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-        id: project
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          automatic_release_tag: "${{ steps.vars.outputs.sha_short }}"
+          automatic_release_tag: "${GITHUB_SHA::8}"
           files: |
             target/*.jar
