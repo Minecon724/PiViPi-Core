@@ -50,6 +50,6 @@ jobs:
             github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "${{ github.ref }}",
+              ref: "${{ steps.project.outputs.version }}",
               sha: context.sha
             })
