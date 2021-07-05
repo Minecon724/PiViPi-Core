@@ -41,7 +41,7 @@ jobs:
           path: target/*.jar
       - name: Set outputs
         id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo "::set-output name=sha_short::$(git rev-parse --short "$GITHUB_SHA")"
       - name: sjsj
         uses: tvdias/github-tagger@v0.0.2
         with:
