@@ -39,17 +39,16 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: target/*.jar
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)
       - name: Extract Maven project version
         run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
         id: project
-      - name: Create tag
-        uses: actions/github-script@v3
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          github-token: ${{ github.token }}
-          script: |
-            github.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: "${{ steps.project.outputs.version }}",
-              sha: context.sha
-            })
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "${{ steps.vars.outputs.sha_short }}"
+          files: |
+            target/*.jar
