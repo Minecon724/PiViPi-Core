@@ -1,0 +1,5 @@
+modules:
+  better_spawn_protection: # works only for overworld
+    enable: true
+    size: 32
+  chat_format: true # not working yet

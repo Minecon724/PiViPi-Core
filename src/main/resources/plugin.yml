@@ -11,3 +11,5 @@ commands:
 permissions:
   core.ip:
     default: op
+  core.bypasssp:
+    default: op
