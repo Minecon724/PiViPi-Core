@@ -17,12 +17,13 @@ import pl.pivipi.core.Core;
 
 public class SpawnProtection implements Listener {
 	private Core plugin;
+	private int radius;
 	
 	public SpawnProtection(Core plugin) {
 		this.plugin = plugin;
+		this.radius = plugin.configCfg.getInt("modules.better_spawn_protection.size");
 	}
 	
-	int radius = plugin.configCfg.getInt("modules.better_spawn_protection.size");
 	Location center = Bukkit.getWorld("world").getSpawnLocation();
 	
 	private boolean isInSpawn(Location lok) {
