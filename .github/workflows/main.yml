@@ -48,3 +48,14 @@ jobs:
           prerelease: true
           automatic_release_tag: "${{ steps.vars.outputs.sha_short }}"
           files: target/*.jar
+      - name: test
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/aasdfasdf",
+              sha: context.sha
+            })
