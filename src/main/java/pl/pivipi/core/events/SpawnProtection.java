@@ -27,8 +27,8 @@ public class SpawnProtection implements Listener {
 	
 	private boolean isInSpawn(Location lok) {
 		if (lok.getWorld() == center.getWorld()) {
-			if (lok.getX() <= center.getX() + radius && lok.getX() >= center.getX() - radius) {
-				if (lok.getZ() <= center.getZ() + radius && lok.getZ() >= center.getZ() - radius) {
+			if (lok.getX() >= center.getX() - radius && lok.getX() <= center.getX() + radius) {
+				if (lok.getZ() >= center.getZ() - radius && lok.getZ() <= center.getZ() + radius) {
 					return true;
 				}
 			}
