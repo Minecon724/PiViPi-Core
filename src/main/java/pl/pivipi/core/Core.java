@@ -1,7 +1,9 @@
 package pl.pivipi.core;
 
 import java.io.File;
+import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +22,7 @@ public class Core extends JavaPlugin {
 	public void onEnable() {
 		if (!(configYml.exists())) saveResource("config.yml", false);
 		if (configCfg.getBoolean("modules.better_spawn_protection.enable")) {
+			Bukkit.getLogger().log(Level.INFO, "Enabling better spawn protection module...");
 			getServer().getPluginManager().registerEvents(new SpawnProtection(this), this);
 		}
 		getCommand("zakup").setExecutor(new CmdZakup());
