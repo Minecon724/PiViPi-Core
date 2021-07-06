@@ -8,6 +8,8 @@ commands:
   zakup:
   stat:
   ip:
+  core:
+    aliases: pivipi
 permissions:
   core.ip:
     default: op

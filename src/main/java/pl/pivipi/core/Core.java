@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import pl.pivipi.core.commands.CmdCore;
 import pl.pivipi.core.commands.CmdIp;
 import pl.pivipi.core.commands.CmdStat;
 import pl.pivipi.core.commands.CmdZakup;
@@ -28,6 +29,7 @@ public class Core extends JavaPlugin {
 		getCommand("zakup").setExecutor(new CmdZakup());
 		getCommand("stat").setExecutor(new CmdStat());
 		getCommand("ip").setExecutor(new CmdIp());
+		getCommand("core").setExecutor(new CmdCore(this));
 	}
 	
 }
