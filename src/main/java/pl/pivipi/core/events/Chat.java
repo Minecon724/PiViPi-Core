@@ -2,6 +2,7 @@ package pl.pivipi.core.events;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -29,12 +30,14 @@ public class Chat implements Listener {
 		boolean set = false;
 		for (String key : hm.keySet()) {
 			if (e.getPlayer().hasPermission("core.chat." + key)) {
+				Bukkit.broadcastMessage(key);
 				e.setFormat(hm.get(key));
 				set = true;
 				break;
 			}
 		}
 		if (!(set)) {
+			Bukkit.broadcastMessage("default");
 			e.setFormat(hm.get("default"));
 		}
 	}
