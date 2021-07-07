@@ -26,12 +26,16 @@ public class Chat implements Listener {
 		if (e.getPlayer().hasPermission("core.chatcolor")) {
 			e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		}
-		e.setFormat(hm.get("default"));
+		boolean set = false;
 		for (String key : hm.keySet()) {
 			if (e.getPlayer().hasPermission("core.chat." + key)) {
 				e.setFormat(hm.get(key));
+				set = true;
 				break;
 			}
+		}
+		if (!(set)) {
+			e.setFormat(hm.get("default"));
 		}
 	}
 	
