@@ -11,3 +11,10 @@ modules:
       damage: 0
       liquid: 60
       redstone: 60
+  chat:
+    enable: true
+    format: # %1$s for username, %2$s for message
+      admin: "&c%1$s&f: %2$s"
+      mod: "&9%1$s&f: %2$s"
+      vip: "&6&%1$s&f: %2$s"
+      default: "%1$s: %2$s"
