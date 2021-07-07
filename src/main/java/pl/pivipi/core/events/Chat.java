@@ -1,6 +1,7 @@
 package pl.pivipi.core.events;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -28,17 +29,17 @@ public class Chat implements Listener {
 			e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		}
 		boolean set = false;
-		for (String key : hm.keySet()) {
-			Bukkit.broadcastMessage("c " + key);
-			if (e.getPlayer().hasPermission("core.chat." + key)) {
-				Bukkit.broadcastMessage(key);
-				e.setFormat(hm.get(key));
+		for (Map.Entry<String, String> entry : hm.entrySet()) {
+			//Bukkit.broadcastMessage("c " + key);
+			if (e.getPlayer().hasPermission("core.chat." + entry.getKey())) {
+				//Bukkit.broadcastMessage(key);
+				e.setFormat(entry.getValue());
 				set = true;
 				break;
 			}
 		}
 		if (!(set)) {
-			Bukkit.broadcastMessage("default");
+			//Bukkit.broadcastMessage("default");
 			e.setFormat(hm.get("default"));
 		}
 	}
