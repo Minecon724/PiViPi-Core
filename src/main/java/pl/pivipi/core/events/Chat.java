@@ -11,11 +11,12 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import net.md_5.bungee.api.ChatColor;
 import pl.pivipi.core.Core;
+import pl.pivipi.core.utils.PermissionInt;
 
 public class Chat implements Listener {
 	
 	private Core plugin;
-	private Map<String, String> hm = new HashMap<String, String>();
+	private HashMap<String, String> hm = new HashMap<String, String>();
 	
 	public Chat(Core plugin) {
 		this.plugin = plugin;
@@ -29,15 +30,13 @@ public class Chat implements Listener {
 		if (e.getPlayer().hasPermission("core.chatcolor")) {
 			e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		}
-		e.setFormat(ChatColor.translateAlternateColorCodes('&', hm.get("default")));
+		int lvl = -1;
+		String k = "default";
 		for (String key : hm.keySet()) {
-			Bukkit.broadcastMessage("c " + key);
-			if (!(key.equalsIgnoreCase("default")) && e.getPlayer().hasPermission("core.chat." + key)) {
-				e.setFormat(ChatColor.translateAlternateColorCodes('&', hm.get(key)));
-				Bukkit.broadcastMessage(key);
-				break;
-			}
+			int c = PermissionInt.calc(e.getPlayer(), "core.chat." + key, 10);
+			if (c > lvl) lvl = c;
 		}
+		e.setFormat(ChatColor.translateAlternateColorCodes('&', hm.get(k)));
 	}
 	
 }
