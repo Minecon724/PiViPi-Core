@@ -5,15 +5,24 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import net.md_5.bungee.api.ChatColor;
 import pl.pivipi.core.Core;
-import pl.pivipi.core.utils.PermissionInt;
 
 public class Chat implements Listener {
+	
+	public static int calc(Player p, String pe, Integer r) {
+		for (int i=r;i>=0;i--) {
+			if (p.hasPermission(pe+"."+Integer.toString(i))) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	
 	private Core plugin;
 	private HashMap<String, String> hm = new HashMap<String, String>();
@@ -33,7 +42,7 @@ public class Chat implements Listener {
 		int lvl = -1;
 		String k = "default";
 		for (String key : hm.keySet()) {
-			int c = PermissionInt.calc(e.getPlayer(), "core.chat." + key, 10);
+			int c = calc(e.getPlayer(), "core.chat." + key, 10);
 			if (c > lvl) lvl = c;
 		}
 		e.setFormat(ChatColor.translateAlternateColorCodes('&', hm.get(k)));
