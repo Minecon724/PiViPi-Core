@@ -20,7 +20,6 @@ public class Chat implements Listener {
 	public Chat(Core plugin) {
 		this.plugin = plugin;
 	    for (String key : plugin.configCfg.getConfigurationSection("modules.chat.format").getKeys(false)) {
-	    	Bukkit.getLogger().log(Level.SEVERE, "c " + key);
 	        hm.put(key, plugin.configCfg.getString("modules.chat.format."+key));
 	    }
 	}
@@ -30,19 +29,12 @@ public class Chat implements Listener {
 		if (e.getPlayer().hasPermission("core.chatcolor")) {
 			e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		}
-		boolean set = false;
+		e.setFormat(hm.get("default"));
 		for (String key : hm.keySet()) {
-			Bukkit.broadcastMessage("c " + key);
-			if (e.getPlayer().hasPermission("core.chat." + key)) {
-				Bukkit.broadcastMessage(key);
+			if (key != "default" && e.getPlayer().hasPermission("core.chat." + key)) {
 				e.setFormat(hm.get(key));
-				set = true;
 				break;
 			}
-		}
-		if (!(set)) {
-			//Bukkit.broadcastMessage("default");
-			e.setFormat(hm.get("default"));
 		}
 	}
 	
