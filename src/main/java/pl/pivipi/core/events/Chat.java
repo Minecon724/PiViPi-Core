@@ -2,6 +2,7 @@ package pl.pivipi.core.events;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -19,6 +20,7 @@ public class Chat implements Listener {
 	public Chat(Core plugin) {
 		this.plugin = plugin;
 	    for (String key : plugin.configCfg.getConfigurationSection("modules.chat.format").getKeys(false)) {
+	    	Bukkit.getLogger().log(Level.SEVERE, "c " + key);
 	        hm.put(key, plugin.configCfg.getString("modules.chat.format."+key));
 	    }
 	}
@@ -29,11 +31,11 @@ public class Chat implements Listener {
 			e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		}
 		boolean set = false;
-		for (Map.Entry<String, String> entry : hm.entrySet()) {
+		for (String key : hm.keySet()) {
 			//Bukkit.broadcastMessage("c " + key);
-			if (e.getPlayer().hasPermission("core.chat." + entry.getKey())) {
+			if (e.getPlayer().hasPermission("core.chat." + key)) {
 				//Bukkit.broadcastMessage(key);
-				e.setFormat(entry.getValue());
+				e.setFormat(hm.get(key));
 				set = true;
 				break;
 			}
