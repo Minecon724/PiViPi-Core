@@ -32,9 +32,9 @@ public class Chat implements Listener {
 		}
 		boolean set = false;
 		for (String key : hm.keySet()) {
-			//Bukkit.broadcastMessage("c " + key);
+			Bukkit.broadcastMessage("c " + key);
 			if (e.getPlayer().hasPermission("core.chat." + key)) {
-				//Bukkit.broadcastMessage(key);
+				Bukkit.broadcastMessage(key);
 				e.setFormat(hm.get(key));
 				set = true;
 				break;
