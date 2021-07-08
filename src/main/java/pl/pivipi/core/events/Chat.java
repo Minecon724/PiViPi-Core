@@ -16,12 +16,13 @@ import pl.pivipi.core.Core;
 public class Chat implements Listener {
 	
 	public static int calc(Player p, String pe, Integer r) {
+		int l = -1;
 		for (int i=r;i>=0;i--) {
 			if (p.hasPermission(pe+"."+Integer.toString(i))) {
-				return i;
+				l = i;
 			}
 		}
-		return -1;
+		return l;
 	}
 	
 	private Core plugin;
