@@ -15,7 +15,7 @@ import pl.pivipi.core.Core;
 public class Chat implements Listener {
 	
 	private Core plugin;
-	private HashMap<String, String> hm = new HashMap<String, String>();
+	private Map<String, String> hm = new HashMap<String, String>();
 	
 	public Chat(Core plugin) {
 		this.plugin = plugin;
@@ -29,11 +29,11 @@ public class Chat implements Listener {
 		if (e.getPlayer().hasPermission("core.chatcolor")) {
 			e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
 		}
-		e.setFormat(hm.get("default"));
+		e.setFormat(ChatColor.translateAlternateColorCodes('&', hm.get("default")));
 		for (String key : hm.keySet()) {
 			Bukkit.broadcastMessage("c " + key);
 			if (!(key.equalsIgnoreCase("default")) && e.getPlayer().hasPermission("core.chat." + key)) {
-				e.setFormat(hm.get(key));
+				e.setFormat(ChatColor.translateAlternateColorCodes('&', hm.get(key)));
 				Bukkit.broadcastMessage(key);
 				break;
 			}
