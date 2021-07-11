@@ -32,28 +32,30 @@ public class WebHandler implements HttpHandler {
 				if (EnumUtils.isValidEnum(Statistic.class, parts[1].toUpperCase())) {
 					int res;
 					Statistic statistic = Statistic.valueOf(parts[1].toUpperCase());
-					if (parts.length < 2 && statistic.getType() != Statistic.Type.UNTYPED) {
-						rCode = 406;
-						response = "Statistic type " + statistic.toString() + " requires " + statistic.getType().toString() + " argument";
-					} else if (statistic.getType() != Statistic.Type.UNTYPED) {
-						if (statistic.getType() == Statistic.Type.BLOCK || statistic.getType() == Statistic.Type.ITEM) {
-							if (EnumUtils.isValidEnum(Material.class, parts[2].toUpperCase())) {
-								res = player.getStatistic(statistic, Material.valueOf(parts[2].toUpperCase()));
-								rCode = 200;
-								response = Integer.toString(res);
-							} else {
-								rCode = 404;
-								response = "Unknown Material " + parts[2].toUpperCase();
+					if (statistic.getType() != Statistic.Type.UNTYPED) {
+						if (parts.length > 2) {
+							if (statistic.getType() == Statistic.Type.BLOCK || statistic.getType() == Statistic.Type.ITEM) {
+								if (EnumUtils.isValidEnum(Material.class, parts[2].toUpperCase())) {
+									res = player.getStatistic(statistic, Material.valueOf(parts[2].toUpperCase()));
+									rCode = 200;
+									response = Integer.toString(res);
+								} else {
+									rCode = 404;
+									response = "Unknown Material " + parts[2].toUpperCase();
+								}
+							} else if (statistic.getType() == Statistic.Type.ENTITY) {
+								if (EnumUtils.isValidEnum(EntityType.class, parts[2].toUpperCase())) {
+									res = player.getStatistic(statistic, EntityType.valueOf(parts[2].toUpperCase()));
+									rCode = 200;
+									response = Integer.toString(res);
+								} else {
+									rCode = 404;
+									response = "Unknown EntityType " + parts[2].toUpperCase();
+								}
 							}
-						} else if (statistic.getType() == Statistic.Type.ENTITY) {
-							if (EnumUtils.isValidEnum(EntityType.class, parts[2].toUpperCase())) {
-								res = player.getStatistic(statistic, EntityType.valueOf(parts[2].toUpperCase()));
-								rCode = 200;
-								response = Integer.toString(res);
-							} else {
-								rCode = 404;
-								response = "Unknown EntityType " + parts[2].toUpperCase();
-							}
+						} else {
+							rCode = 406;
+							response = "Statistic type " + statistic.toString() + " requires " + statistic.getType().toString() + " argument";
 						}
 					} else {
 						res = player.getStatistic(statistic);
