@@ -1,3 +1,4 @@
+proxycheck_apikey: ''
 modules:
   better_spawn_protection: # works only for overworld
     enable: true

@@ -30,7 +30,7 @@ public class Core extends JavaPlugin {
 		if (!(configYml.exists())) saveResource("config.yml", false);
 		getCommand("zakup").setExecutor(new CmdZakup());
 		getCommand("stat").setExecutor(new CmdStat());
-		getCommand("ip").setExecutor(new CmdIp());
+		getCommand("ip").setExecutor(new CmdIp(this));
 		getCommand("core").setExecutor(new CmdCore(this));
 		if (configCfg.getBoolean("modules.better_spawn_protection.enable")) {
 			Bukkit.getLogger().log(Level.INFO, "Enabling better spawn protection module...");

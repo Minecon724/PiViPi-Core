@@ -9,9 +9,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import net.md_5.bungee.api.ChatColor;
+import pl.pivipi.core.Core;
 import pl.pivipi.core.utils.PCDetection;
 
 public class CmdIp implements CommandExecutor {
+	private Core plugin;
+	
+	public CmdIp(Core plugin) {
+		this.plugin = plugin;
+	}
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender.hasPermission("core.ip")) {
 			if (args.length < 1) {
@@ -31,7 +37,7 @@ public class CmdIp implements CommandExecutor {
 			        ipandport = sIpandPort.split(":");
 			        ip = ipandport[0];
 				}
-				PCDetection pcDetection = new PCDetection("c82n13-v567d6-e480zh-626qm7");
+				PCDetection pcDetection = new PCDetection(plugin.configCfg.getString("proxycheck_apikey"));
 				pcDetection.useSSL();
 		        pcDetection.set_api_timeout(5000);
 		        pcDetection.setUseVpn(true);

@@ -24,7 +24,10 @@ public class WebHandler implements HttpHandler {
 		OfflinePlayer player = Bukkit.getOfflinePlayer(parts[0]);
 		int rCode = 200;
 		String response = "OK";
-		if (player == null) {
+		if (parts.length < 2) {
+			rCode = 404;
+			response = "???";
+		} else if (player == null) {
 			rCode = 404;
 			response = "Player " + parts[0] + " not found";
 		} else {
