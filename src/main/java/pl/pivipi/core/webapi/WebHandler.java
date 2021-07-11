@@ -21,7 +21,7 @@ public class WebHandler implements HttpHandler {
 		String uri = t.getRequestURI().toString().substring(1);
 		String[] parts = uri.split("/");
 		//Player player = Bukkit.getPlayer(parts[0]);
-		OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(parts[0]));
+		OfflinePlayer player = Bukkit.getOfflinePlayer(parts[0]);
 		int rCode = 200;
 		String response = "OK";
 		if (player == null) {
