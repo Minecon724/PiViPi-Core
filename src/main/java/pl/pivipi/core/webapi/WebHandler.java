@@ -30,19 +30,39 @@ public class WebHandler implements HttpHandler {
 		} else {
 			try {
 				if (EnumUtils.isValidEnum(Statistic.class, parts[1].toUpperCase())) {
-					int statistic;
-					if (EnumUtils.isValidEnum(EntityType.class, parts[2].toUpperCase())) {
-						statistic = player.getStatistic(Statistic.valueOf(parts[1].toUpperCase()), EntityType.valueOf(parts[2].toUpperCase()));
-					} else if (EnumUtils.isValidEnum(Material.class, parts[2].toUpperCase())) {
-						statistic = player.getStatistic(Statistic.valueOf(parts[1].toUpperCase()), Material.valueOf(parts[2].toUpperCase()));
+					int res;
+					Statistic statistic = Statistic.valueOf(parts[1].toUpperCase());
+					if (parts.length < 2 && statistic.getType() != Statistic.Type.UNTYPED) {
+						rCode = 406;
+						response = "Statistic type " + statistic.toString() + " requires " + statistic.getType().toString() + " argument";
+					} else if (statistic.getType() != Statistic.Type.UNTYPED) {
+						if (statistic.getType() == Statistic.Type.BLOCK || statistic.getType() == Statistic.Type.ITEM) {
+							if (EnumUtils.isValidEnum(Material.class, parts[2].toUpperCase())) {
+								res = player.getStatistic(statistic, Material.valueOf(parts[2].toUpperCase()));
+								rCode = 200;
+								response = Integer.toString(res);
+							} else {
+								rCode = 404;
+								response = "Unknown Material " + parts[2].toUpperCase();
+							}
+						} else if (statistic.getType() == Statistic.Type.ENTITY) {
+							if (EnumUtils.isValidEnum(EntityType.class, parts[2].toUpperCase())) {
+								res = player.getStatistic(statistic, EntityType.valueOf(parts[2].toUpperCase()));
+								rCode = 200;
+								response = Integer.toString(res);
+							} else {
+								rCode = 404;
+								response = "Unknown EntityType " + parts[2].toUpperCase();
+							}
+						}
 					} else {
-						statistic = player.getStatistic(Statistic.valueOf(parts[1].toUpperCase()));
+						res = player.getStatistic(statistic);
+						rCode = 200;
+						response = Integer.toString(res);
 					}
-					rCode = 200;
-					response = Integer.toString(statistic);
 				} else {
 					rCode = 404;
-					response = "Statistic " + parts[1].toUpperCase() + " not found";
+					response = "Unknown Statistic " + parts[1].toUpperCase();
 				}
 			} catch (IllegalArgumentException e) {
 				rCode = 406;
