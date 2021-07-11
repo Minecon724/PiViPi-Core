@@ -2,9 +2,11 @@ package pl.pivipi.core.webapi;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.EnumUtils;
@@ -18,7 +20,8 @@ public class WebHandler implements HttpHandler {
 	public void handle(HttpExchange t) throws IOException {
 		String uri = t.getRequestURI().toString().substring(1);
 		String[] parts = uri.split("/");
-		Player player = Bukkit.getPlayer(parts[0]);
+		//Player player = Bukkit.getPlayer(parts[0]);
+		OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(parts[0]));
 		int rCode = 200;
 		String response = "OK";
 		if (player == null) {
