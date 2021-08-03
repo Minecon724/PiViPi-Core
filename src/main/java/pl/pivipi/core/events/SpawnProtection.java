@@ -34,7 +34,7 @@ public class SpawnProtection implements Listener {
 		this.offsets = cfg.getConfigurationSection("extend");
 		this.radius = cfg.getInt("size");
                 for (Integer key : cfg.getConfigurationSection("warnings").getKeys(false)) {
-                    this.warnings.put(key, cfg.getConfigurationSection("warnings").getString(key));
+                    this.warnings.put(key, cfg.getConfigurationSection("warnings").getString(Integer.toString(key)));
                 }
 	}
 	
