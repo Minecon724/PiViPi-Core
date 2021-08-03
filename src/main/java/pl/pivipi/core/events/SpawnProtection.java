@@ -20,6 +20,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import pl.pivipi.core.Core;
 
@@ -28,6 +29,7 @@ public class SpawnProtection implements Listener {
 	private ConfigurationSection cfg;
 	private ConfigurationSection offsets;
 	private int radius;
+        private ConfigurationSection warningcs;
         private HashMap<Integer, String> warnings;
 	
 	public SpawnProtection(Core plugin) {
@@ -35,8 +37,9 @@ public class SpawnProtection implements Listener {
 		this.cfg = plugin.configCfg.getConfigurationSection("modules.better_spawn_protection");
 		this.offsets = cfg.getConfigurationSection("extend");
 		this.radius = cfg.getInt("size");
-                for (String key : cfg.getConfigurationSection("warnings").getKeys(false)) {
-                    this.warnings.put(Integer.valueOf(key), cfg.getConfigurationSection("warnings").getString(key));
+                this.warningcs = cfg.getConfigurationSection("warnings");
+                for (String key : warningcs.getKeys(false)) {
+                    if (Integer.valueOf(warningcs.getString(key)) >= 0) this.warnings.put(Integer.valueOf(key), warningcs.getString(key));
                 }
 	}
 	
@@ -136,4 +139,15 @@ public class SpawnProtection implements Listener {
 			e.setNewCurrent(0);
 		}
 	}
+
+        @EventHandler
+        public void bsWarning(PlayerMoveEvent e) {
+            Location from = e.getFrom();
+            Location to = e.getTo();
+            for (Integer i : warnings.keySet()) {
+                if ((from.getX() < i && to.getX() >= i) || (to.getX() < i && to.getX() >= i)) {
+                    e.getPlayer().sendMessage(warnings.getString(Integer.toString(i)));
+                }
+            }
+        }
 }
