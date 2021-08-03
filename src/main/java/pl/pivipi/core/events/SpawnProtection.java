@@ -33,7 +33,7 @@ public class SpawnProtection implements Listener {
 		this.cfg = plugin.configCfg.getConfigurationSection("modules.better_spawn_protection");
 		this.offsets = cfg.getConfigurationSection("extend");
 		this.radius = cfg.getInt("size");
-                for (Integer key : cfg.getConfigurationSection("warnings").getKeys(false)) {
+                for (int Integer.valueOf(key) : cfg.getConfigurationSection("warnings").getKeys(false)) {
                     this.warnings.put(key, cfg.getConfigurationSection("warnings").getString(Integer.toString(key)));
                 }
 	}
