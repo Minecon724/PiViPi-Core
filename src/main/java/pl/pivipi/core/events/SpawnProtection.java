@@ -1,6 +1,6 @@
 package pl.pivipi.core.events;
 
-import java.lang.HashMap;
+import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
