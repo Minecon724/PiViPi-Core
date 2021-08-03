@@ -3,6 +3,7 @@ package pl.pivipi.core.events;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -146,7 +147,7 @@ public class SpawnProtection implements Listener {
             Location to = e.getTo();
             for (Integer i : warnings.keySet()) {
                 if ((from.getX() < i && to.getX() >= i) || (to.getX() < i && to.getX() >= i)) {
-                    e.getPlayer().sendMessage(warnings.getString(Integer.toString(i)));
+                    e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', warnings.get(Integer.toString(i))));
                 }
             }
         }
