@@ -3,7 +3,7 @@ modules:
   better_spawn_protection: # works only for overworld
     enable: true
     size: 32
-    offset:
+    extend:
       explode: 100
       break: 60
       place: 60
@@ -12,6 +12,8 @@ modules:
       damage: 0
       liquid: 60
       redstone: 60
+    warning:
+      40: "aaa"
   chat:
     enable: true
     format: # %1$s for username, %2$s for message
