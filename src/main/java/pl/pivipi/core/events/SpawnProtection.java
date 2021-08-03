@@ -26,12 +26,16 @@ public class SpawnProtection implements Listener {
 	private ConfigurationSection cfg;
 	private ConfigurationSection offsets;
 	private int radius;
+        private HashMap<Integer, String> warnings;
 	
 	public SpawnProtection(Core plugin) {
 		this.plugin = plugin;
 		this.cfg = plugin.configCfg.getConfigurationSection("modules.better_spawn_protection");
-		this.offsets = cfg.getConfigurationSection("offset");
+		this.offsets = cfg.getConfigurationSection("extend");
 		this.radius = cfg.getInt("size");
+                for (Integer key : cfg.getConfigurationSection("warnings").getKeys(false)) {
+                    this.warnings.put(key, cfg.getConfigurationSection("warnings").getString(key));
+                }
 	}
 	
 	Location center = Bukkit.getWorld("world").getSpawnLocation();
