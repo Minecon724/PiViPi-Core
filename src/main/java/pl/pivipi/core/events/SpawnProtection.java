@@ -1,6 +1,9 @@
 package pl.pivipi.core.events;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -17,6 +20,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import pl.pivipi.core.Core;
 
@@ -25,12 +29,18 @@ public class SpawnProtection implements Listener {
 	private ConfigurationSection cfg;
 	private ConfigurationSection offsets;
 	private int radius;
+        private ConfigurationSection warningcs;
+        private HashMap<Integer, String> warnings;
 	
 	public SpawnProtection(Core plugin) {
 		this.plugin = plugin;
 		this.cfg = plugin.configCfg.getConfigurationSection("modules.better_spawn_protection");
-		this.offsets = cfg.getConfigurationSection("offset");
+		this.offsets = cfg.getConfigurationSection("extend");
 		this.radius = cfg.getInt("size");
+                this.warningcs = cfg.getConfigurationSection("warnings");
+                for (String key : warningcs.getKeys(false)) {
+                    if (Integer.valueOf(warningcs.getString(key)) >= 0) this.warnings.put(Integer.valueOf(key), warningcs.getString(key));
+                }
 	}
 	
 	Location center = Bukkit.getWorld("world").getSpawnLocation();
@@ -129,4 +139,15 @@ public class SpawnProtection implements Listener {
 			e.setNewCurrent(0);
 		}
 	}
+
+        @EventHandler
+        public void bsWarning(PlayerMoveEvent e) {
+            Location from = e.getFrom();
+            Location to = e.getTo();
+            for (Integer i : warnings.keySet()) {
+                if ((from.getX() < i && to.getX() >= i) || (to.getX() < i && to.getX() >= i)) {
+                    e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', warnings.get(Integer.toString(i))));
+                }
+            }
+        }
 }
