@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import net.md_5.bungee.api.ChatColor;
-import net.minecraft.server.v1_16_R3.MinecraftServer;
+import pl.pivipi.core.utils.NMS;
 import pl.pivipi.core.utils.ColorUtils;
 
 public class CmdStat implements CommandExecutor {
@@ -15,7 +15,7 @@ public class CmdStat implements CommandExecutor {
 		Runtime r = Runtime.getRuntime();
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("tps")) {
-				sender.sendMessage(ChatColor.GREEN + "TPS serwera: " + ColorUtils.colorTps(MinecraftServer.getServer().recentTps[0]));
+				sender.sendMessage(ChatColor.GREEN + "TPS serwera: " + ColorUtils.colorTps(NMS.getTPS(0)));
 			} else if (args[0].equalsIgnoreCase("ram")) {
 				sender.sendMessage(ChatColor.GREEN + "Uzyta pamiec: " + ChatColor.AQUA + Long.toString((r.totalMemory() - r.freeMemory()) / 1048576) + "MB");
 				sender.sendMessage(ChatColor.GREEN + "Wolna pamiec: " + ChatColor.AQUA + Long.toString(r.freeMemory() / 1048576) + "MB");

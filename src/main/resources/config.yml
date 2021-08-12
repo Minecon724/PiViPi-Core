@@ -22,3 +22,11 @@ modules:
   webapi:
     enable: true
     port: 4200
+  slots:
+    enable: true
+    add: 5
+    limit: 100
+    message: |
+        Serwer jest pelny.
+        VIP moze wchodzic na serwer nawet gdy jest pelny!
+    

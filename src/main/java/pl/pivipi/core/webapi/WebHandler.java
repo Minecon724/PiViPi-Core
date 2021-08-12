@@ -2,17 +2,12 @@ package pl.pivipi.core.webapi;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
-import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.EnumUtils;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
