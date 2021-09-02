@@ -18,8 +18,7 @@ public class CmdZakup implements CommandExecutor {
 					msg += args[i] + (i<args.length-1 ? " " : "");
 				}
 				Bukkit.broadcastMessage("");
-				Bukkit.broadcastMessage(ChatColor.AQUA + args[0] + ChatColor.GOLD + " wlasnie zakupil " + ChatColor.AQUA + msg + ChatColor.GOLD + "!");
-				Bukkit.broadcastMessage(ChatColor.GOLD + "Kup na " + ChatColor.UNDERLINE + "https://sklep.pivipi.pl");
+				Bukkit.broadcastMessage(ChatColor.AQUA + args[0] + ChatColor.GOLD + " just bought " + ChatColor.AQUA + msg + ChatColor.GOLD + "!");
 				Bukkit.broadcastMessage("");
 				return true;
 			}
