@@ -15,25 +15,25 @@ public class CmdStat implements CommandExecutor {
 		Runtime r = Runtime.getRuntime();
 		if (args.length > 0) {
 			if (args[0].equalsIgnoreCase("tps")) {
-				sender.sendMessage(ChatColor.GREEN + "TPS serwera: " + ColorUtils.colorTps(NMS.getTPS(0)));
+				sender.sendMessage(ChatColor.GREEN + "Server TPS: " + ColorUtils.colorTps(NMS.getTPS(0)));
 			} else if (args[0].equalsIgnoreCase("ram")) {
-				sender.sendMessage(ChatColor.GREEN + "Uzyta pamiec: " + ChatColor.AQUA + Long.toString((r.totalMemory() - r.freeMemory()) / 1048576) + "MB");
-				sender.sendMessage(ChatColor.GREEN + "Wolna pamiec: " + ChatColor.AQUA + Long.toString(r.freeMemory() / 1048576) + "MB");
-				sender.sendMessage(ChatColor.GREEN + "Zaalokowana pamiec: " + ChatColor.AQUA + Long.toString(r.totalMemory() / 1048576) + "MB");
-				sender.sendMessage(ChatColor.GREEN + "Maksymalne uzycie: " + ChatColor.AQUA + Long.toString(r.maxMemory() / 1048576) + "MB");
+				sender.sendMessage(ChatColor.GREEN + "Memory used: " + ChatColor.AQUA + Long.toString((r.totalMemory() - r.freeMemory()) / 1048576) + "MB");
+				sender.sendMessage(ChatColor.GREEN + "Free memory: " + ChatColor.AQUA + Long.toString(r.freeMemory() / 1048576) + "MB");
+				sender.sendMessage(ChatColor.GREEN + "Allocated memory: " + ChatColor.AQUA + Long.toString(r.totalMemory() / 1048576) + "MB");
+				sender.sendMessage(ChatColor.GREEN + "Max usage: " + ChatColor.AQUA + Long.toString(r.maxMemory() / 1048576) + "MB");
 			} else if (args[0].equalsIgnoreCase("info")) {
-				sender.sendMessage(ChatColor.GREEN + "Odleglosc widzenia na serwerze: " + ChatColor.AQUA + Integer.toString(Bukkit.getViewDistance()) + " chunkow");
-				sender.sendMessage(ChatColor.GREEN + "Wersja Javy: " + ChatColor.AQUA + System.getProperty("java.version"));
-				sender.sendMessage(ChatColor.GREEN + "Procesory: " + ChatColor.AQUA + Integer.toString(r.availableProcessors()));
+				sender.sendMessage(ChatColor.GREEN + "Server view distance: " + ChatColor.AQUA + Integer.toString(Bukkit.getViewDistance()) + " chunks");
+				sender.sendMessage(ChatColor.GREEN + "Java version: " + ChatColor.AQUA + System.getProperty("java.version"));
+				sender.sendMessage(ChatColor.GREEN + "CPU threads: " + ChatColor.AQUA + Integer.toString(r.availableProcessors()));
 			} else {
-				sender.sendMessage(ChatColor.AQUA + "/stat tps" + ChatColor.GREEN + " - zobacz TPS serwera.");
-				sender.sendMessage(ChatColor.AQUA + "/stat ram" + ChatColor.GREEN + " - zobacz uzycie RAMu przez serwer.");
-				sender.sendMessage(ChatColor.AQUA + "/stat info" + ChatColor.GREEN + " - inne informacje.");
+				sender.sendMessage(ChatColor.AQUA + "/stat tps" + ChatColor.GREEN + " - view server TPS.");
+				sender.sendMessage(ChatColor.AQUA + "/stat ram" + ChatColor.GREEN + " - view RAM usage.");
+				sender.sendMessage(ChatColor.AQUA + "/stat info" + ChatColor.GREEN + " - other info.");
 			}
 		} else {
-			sender.sendMessage(ChatColor.AQUA + "/stat tps" + ChatColor.GREEN + " - zobacz TPS serwera.");
-			sender.sendMessage(ChatColor.AQUA + "/stat ram" + ChatColor.GREEN + " - zobacz uzycie RAMu przez serwer.");
-			sender.sendMessage(ChatColor.AQUA + "/stat info" + ChatColor.GREEN + " - inne informacje.");
+			sender.sendMessage(ChatColor.AQUA + "/stat tps" + ChatColor.GREEN + " - view server TPS.");
+			sender.sendMessage(ChatColor.AQUA + "/stat ram" + ChatColor.GREEN + " - view RAM usage.");
+			sender.sendMessage(ChatColor.AQUA + "/stat info" + ChatColor.GREEN + " - other info.");
 		}
 		return true;
 	}
