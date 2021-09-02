@@ -21,7 +21,7 @@ public class CmdIp implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender.hasPermission("core.ip")) {
 			if (args.length < 1) {
-				sender.sendMessage(ChatColor.RED + "Podaj IP lub nick gracza!");
+				sender.sendMessage(ChatColor.RED + "IP or player name argument is required!");
 				return true;
 			} else {
 				String ip;
@@ -51,17 +51,17 @@ public class CmdIp implements CommandExecutor {
 				}
 		        if (pcDetection.status.equalsIgnoreCase("ok")) {
 			        sender.sendMessage(ChatColor.GREEN+ "--- Informacje o " +ChatColor.AQUA + ip + ChatColor.GREEN + " ---");
-			        sender.sendMessage(ChatColor.GREEN + "Proxy: " + ChatColor.AQUA + ((pcDetection.proxy.equalsIgnoreCase("yes")) ? "tak" : "nie") + ChatColor.GOLD + pcDetection.type);
+			        sender.sendMessage(ChatColor.GREEN + "Proxy: " + ChatColor.AQUA + pcDetection.proxy + ChatColor.GOLD + pcDetection.type);
 			        sender.sendMessage(ChatColor.GREEN + "ASN: " + ChatColor.AQUA + pcDetection.asn);
-			        sender.sendMessage(ChatColor.GREEN + "Dostawca: " + ChatColor.AQUA + pcDetection.provider);
-			        sender.sendMessage(ChatColor.GREEN + "Kraj: " + ChatColor.AQUA + pcDetection.country + ChatColor.GOLD + " " + pcDetection.isocode);
-			        sender.sendMessage(ChatColor.GREEN + "Kontynent: " + ChatColor.AQUA + pcDetection.continent);
+			        sender.sendMessage(ChatColor.GREEN + "Provider: " + ChatColor.AQUA + pcDetection.provider);
+			        sender.sendMessage(ChatColor.GREEN + "Country: " + ChatColor.AQUA + pcDetection.country + ChatColor.GOLD + " " + pcDetection.isocode);
+			        sender.sendMessage(ChatColor.GREEN + "Continent: " + ChatColor.AQUA + pcDetection.continent);
 			        sender.sendMessage(ChatColor.GREEN + "Region: " + ChatColor.AQUA + pcDetection.region + ChatColor.GOLD + " " + pcDetection.regioncode);
-			        sender.sendMessage(ChatColor.GREEN + "Miasto: " + ChatColor.AQUA + pcDetection.city);
-			        sender.sendMessage(ChatColor.GREEN + "Lokalizacja: " + ChatColor.AQUA + Double.toString(pcDetection.latitude)+ ", " + Double.toString(pcDetection.longitude));
-			        if (pcDetection.status.equalsIgnoreCase("warning")) sender.sendMessage(ChatColor.RED + "Ostrzezenie: " + pcDetection.message);
+			        sender.sendMessage(ChatColor.GREEN + "City: " + ChatColor.AQUA + pcDetection.city);
+			        sender.sendMessage(ChatColor.GREEN + "Location: " + ChatColor.AQUA + Double.toString(pcDetection.latitude)+ ", " + Double.toString(pcDetection.longitude));
+			        if (pcDetection.status.equalsIgnoreCase("warning")) sender.sendMessage(ChatColor.RED + "Warning: " + pcDetection.message);
 		        } else if (pcDetection.status.equalsIgnoreCase("denied") || pcDetection.status.equalsIgnoreCase("error")) {
-		        	sender.sendMessage(ChatColor.RED + "Blad: " + pcDetection.message);
+		        	sender.sendMessage(ChatColor.RED + "Error! " + pcDetection.message);
 		        }
 			}
 		}
