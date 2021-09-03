@@ -65,6 +65,12 @@
       <artifactId>simplixcore-minecraft-spigot-quickstart</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>dev.simplix.core</groupId>
+      <artifactId>simplixcore-common-implementation</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
