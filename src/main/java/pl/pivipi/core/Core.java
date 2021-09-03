@@ -13,6 +13,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sun.net.httpserver.HttpServer;
 
+import dev.simplix.core.common.CommonSimplixModule;
+import dev.simplix.core.common.aop.SimplixApplication;
+import dev.simplix.core.common.aop.ScanComponents;
+import dev.simplix.core.common.inject.SimplixInstaller;
+import dev.simplix.core.minecraft.spigot.quickstart.SimplixQuickStart;
+
 import pl.pivipi.core.commands.CmdCore;
 import pl.pivipi.core.commands.CmdIp;
 import pl.pivipi.core.commands.CmdStat;
