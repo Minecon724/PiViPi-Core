@@ -17,7 +17,9 @@ import dev.simplix.core.common.CommonSimplixModule;
 import dev.simplix.core.common.aop.SimplixApplication;
 import dev.simplix.core.common.aop.ScanComponents;
 import dev.simplix.core.common.inject.SimplixInstaller;
+import dev.simplix.core.minecraft.spigot.dynamiclisteners.DynamicListenersSimplixModule;
 import dev.simplix.core.minecraft.spigot.quickstart.SimplixQuickStart;
+import dev.simplix.minecraft.spigot.dynamiccommands.DynamicCommandsSimplixModule;
 
 import pl.pivipi.core.commands.CmdCore;
 import pl.pivipi.core.commands.CmdIp;
@@ -87,4 +89,5 @@ public class Core extends JavaPlugin {
 		Bukkit.getLogger().log(Level.INFO, consolePrefix + " v" + getDescription().getVersion() + " loaded!");
 	}
 	
+        SimplixInstaller.instance().register(LocalizationModule.class, new DynamicListenersSimplixModule(this), new DynamicCommandsSimplixModule());
 }
