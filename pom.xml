@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.pivipi</groupId>
   <artifactId>core</artifactId>
-  <version>1.6.0</version>
+  <version>1.6.1</version>
   <name>Core</name>
 
   <properties>
@@ -14,6 +14,10 @@
     <repository>
       <id>spigot-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+  </repository>
+  <repository>
+    <id>simplixsoft-public</id>
+    <url>https://repo.simplix.dev/repository/simplixsoft-public/</url>
   </repository>
   </repositories>
 
@@ -33,6 +37,18 @@
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
       <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.simplix.core</groupId>
+      <artifactId>simplixcore-common-api</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.simplix.core</groupId>
+      <artifactId>simplixcore-common-implementation</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
