@@ -22,12 +22,21 @@ import pl.pivipi.core.events.SpawnProtection;
 import pl.pivipi.core.utils.NMS;
 import pl.pivipi.core.webapi.WebHandler;
 
+@SimplixApplication(
+    name = "PiViPi-Core",
+    version = "1.0.0",
+    authors = "Minecon724",
+    dependencies = "SimplixCore")
+@ScanComponents("dev.simplix.core")
 public class Core extends JavaPlugin {
 	private File configYml = new File(getDataFolder(), "config.yml");
 	public FileConfiguration configCfg = YamlConfiguration.loadConfiguration(configYml);
 	
 	@Override
 	public void onEnable() {
+                if (!SimplixQuickStart.ensureSimplixCore(this)) {
+                       return;
+                }
 		String consolePrefix = "[" + getDescription().getName() + "]";
 		try {
 			NMS.serverInstance = NMS.getClass("MinecraftServer").getMethod("getServer").invoke(null);
