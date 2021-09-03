@@ -4,6 +4,7 @@ version: ${project.version}
 api-version: 1.16
 author: Minecon724
 website: https://pivipi.pl
+softdepend: [SimplixCore]
 commands:
   zakup:
   stat:
