@@ -41,6 +41,9 @@ public class Core extends JavaPlugin {
 	@Override
 	public void onEnable() {
                 if (!SimplixQuickStart.ensureSimplixCore(this)) {
+                       Bukkit.getLogger().log(Level.SEVERE, "SimplixCore is not installed.");
+                       Bukkit.getLogger().log(Level.SEVERE, "Please download from https://spigotmc.org/resources/84206/");
+                       setEnabled(false);
                        return;
                 }
 		String consolePrefix = "[" + getDescription().getName() + "]";
