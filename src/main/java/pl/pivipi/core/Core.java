@@ -34,7 +34,8 @@ import pl.pivipi.core.webapi.WebHandler;
     name = "PiViPi-Core",
     version = "1.0.0",
     authors = "Minecon724",
-    dependencies = "SimplixCore")
+    dependencies = "SimplixCore",
+    workingDirectory = "plugins/Core")
 @ScanComponents("dev.simplix.core")
 public class Core extends JavaPlugin {
 	private File configYml = new File(getDataFolder(), "config.yml");
@@ -89,5 +90,5 @@ public class Core extends JavaPlugin {
 		Bukkit.getLogger().log(Level.INFO, consolePrefix + " v" + getDescription().getVersion() + " loaded!");
 	}
 	
-        SimplixInstaller.instance().register(LocalizationModule.class, new DynamicListenersSimplixModule(this), new DynamicCommandsSimplixModule());
+        SimplixInstaller.instance().register(new DynamicListenersSimplixModule(this), new DynamicCommandsSimplixModule());
 }
