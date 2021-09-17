@@ -49,6 +49,7 @@ public class Core extends JavaPlugin {
                        setEnabled(false);
                        return;
                 }
+                SimplixInstaller.instance().register(new DynamicListenersSimplixModule(this), new DynamicCommandsSimplixModule());
 		String consolePrefix = "[" + getDescription().getName() + "]";
 		try {
 			NMS.serverInstance = NMS.getClass("MinecraftServer").getMethod("getServer").invoke(null);
@@ -89,6 +90,4 @@ public class Core extends JavaPlugin {
 		}
 		Bukkit.getLogger().log(Level.INFO, consolePrefix + " v" + getDescription().getVersion() + " loaded!");
 	}
-	
-        SimplixInstaller.instance().register(new DynamicListenersSimplixModule(this), new DynamicCommandsSimplixModule());
 }
