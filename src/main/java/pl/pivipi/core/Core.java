@@ -24,7 +24,6 @@ import com.sun.net.httpserver.HttpServer;
 import pl.pivipi.core.commands.CmdCore;
 import pl.pivipi.core.commands.CmdIp;
 import pl.pivipi.core.commands.CmdStat;
-import pl.pivipi.core.commands.CmdZakup;
 import pl.pivipi.core.events.Slots;
 import pl.pivipi.core.events.SpawnProtection;
 import pl.pivipi.core.utils.NMS;
@@ -57,7 +56,6 @@ public class Core extends JavaPlugin {
 			e.printStackTrace();
 		}
 		if (!(configYml.exists())) saveResource("config.yml", false);
-		getCommand("zakup").setExecutor(new CmdZakup());
 		getCommand("stat").setExecutor(new CmdStat());
 		getCommand("ip").setExecutor(new CmdIp(this));
 		getCommand("core").setExecutor(new CmdCore(this));
