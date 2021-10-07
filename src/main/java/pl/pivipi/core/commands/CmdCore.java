@@ -17,7 +17,7 @@ public class CmdCore implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		sender.sendMessage(ChatColor.YELLOW + "------ PiViPi ------");
 		sender.sendMessage(ChatColor.BLUE + "v" + plugin.getDescription().getVersion());
-		sender.sendMessage(ChatColor.BLUE + "https://pivipi.pl");
+		sender.sendMessage(ChatColor.BLUE + "https://pivipi.net");
 		sender.sendMessage(ChatColor.YELLOW + "--------------------");
 		return true;
 	}
