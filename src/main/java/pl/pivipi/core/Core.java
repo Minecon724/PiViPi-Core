@@ -13,14 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sun.net.httpserver.HttpServer;
 
-//import dev.simplix.core.common.CommonSimplixModule;
-//import dev.simplix.core.common.aop.SimplixApplication;
-//import dev.simplix.core.common.aop.ScanComponents;
-//import dev.simplix.core.common.inject.SimplixInstaller;
-//import dev.simplix.core.minecraft.spigot.dynamiclisteners.DynamicListenersSimplixModule;
-//import dev.simplix.core.minecraft.spigot.quickstart.SimplixQuickStart;
-//import dev.simplix.minecraft.spigot.dynamiccommands.DynamicCommandsSimplixModule;
-
 import pl.pivipi.core.commands.CmdCore;
 import pl.pivipi.core.commands.CmdIp;
 import pl.pivipi.core.commands.CmdStat;
@@ -29,26 +21,12 @@ import pl.pivipi.core.events.SpawnProtection;
 import pl.pivipi.core.utils.NMS;
 import pl.pivipi.core.webapi.WebHandler;
 
-//@SimplixApplication(
-//    name = "PiViPi-Core",
-//    version = "1.0.0"
-//    authors = "Minecon724",
-//    dependencies = "SimplixCore",
-//    workingDirectory = "plugins/Core")
-//@ScanComponents("dev.simplix.core")
 public class Core extends JavaPlugin {
 	private File configYml = new File(getDataFolder(), "config.yml");
 	public FileConfiguration configCfg = YamlConfiguration.loadConfiguration(configYml);
 	
 	@Override
 	public void onEnable() {
-               // if (!SimplixQuickStart.ensureSimplixCore(this)) {
-        //               Bukkit.getLogger().log(Level.SEVERE, "SimplixCore is not installed.");
-         //              Bukkit.getLogger().log(Level.SEVERE, "Please download from https://spigotmc.org/resources/84206/");
-           //            setEnabled(false);
-              //         return;
-       //      }
-      //          SimplixInstaller.instance().register(new DynamicListenersSimplixModule(this), new DynamicCommandsSimplixModule());
 		String consolePrefix = "[" + getDescription().getName() + "]";
 		try {
 			NMS.serverInstance = NMS.getClass("MinecraftServer").getMethod("getServer").invoke(null);
