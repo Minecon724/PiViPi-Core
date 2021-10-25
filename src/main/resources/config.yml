@@ -12,7 +12,7 @@ modules:
       damage: 0
       liquid: 60
       redstone: 60
-    warning:
+    warnings:
       40: "aaa"
   chat:
     enable: true
